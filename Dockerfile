@@ -25,7 +25,8 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 # Install Node.js and build assets
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
-    npm install && npm run build
+    rm -rf node_modules package-lock.json && \
+    npm install && npm rebuild && npm run build
 
 # Laravel setup
 RUN php artisan key:generate && php artisan migrate --force
