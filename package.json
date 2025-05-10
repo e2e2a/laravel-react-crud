@@ -4,7 +4,7 @@
     "scripts": {
         "build": "tsc && vite build && vite build --ssr",
         "dev": "vite",
-        "deploy": "sh ./deploy.sh",
+        "deploy": "composer install --optimize-autoloader --no-dev && php artisan key:generate && php artisan migrate --force",
         "lint": "eslint resources/js --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix"
     },
     "devDependencies": {
