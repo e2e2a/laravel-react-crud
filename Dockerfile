@@ -29,7 +29,9 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     npm install && npm rebuild && npm run build
 
 # Laravel setup
-RUN php artisan key:generate && php artisan migrate --force
+RUN cp .env.example .env && \
+    php artisan key:generate && \
+    php artisan migrate --force
 
 # Expose port
 EXPOSE 8000
